@@ -1,42 +1,84 @@
-# Lecture 01/03/24
+# Lecture 28/02/24
 
-Edge computing stuff. Very general and conceptual.
+# Topic: Introduction
 
-Manage cloud resources. CMS: Cloud Management System.
+## General introduction
 
-Talking about papers. Same pdf on how to read papers.
+No business stuff this year. Past me was lying. No dedicated slides but still present.
 
-Start of more technical introduction.
+Need for different environments, cpu isolation and spatial isolation
 
-Cloud carrier: transfer the data, ex: ISP
+spatial isolation: if A crashes it doesn't have to affect B
 
-## Cloud Types
+## Definitions:
 
-- Private Cloud
-- Community
-  - Cineca is an example
-- Hybrid
-- Multi Cloud
-  - use multiple cloud providers
+- Virtual Machine
+  - software emulation of the physical machine
+- Host OS
+  - running on physical hardware 
+- Guest OS
+  - running on host os
 
-## Delivery Models
+- Hypervisor
+  - virtualize stuff
+  - assign set of resources
+  - manage shared resources (arbitrating)
+  - stripped down operating system. 99% linux based.
+    - basic drivers
+    - small attack surface
 
-You manage less and less
+## Advantages of virtualization:
 
-- HaaS
-  - Hardware
-- IaaS
-  - Infrastructure
-  - VPS
-- PaaS
-  - ex: run an image from Dockerhub without thinking about hardware. Maybe having a control panel, ecc...
-- SaaS
-  - google docs
+- isolation
+- agility: control on the state of the app
+  - run, restart, stop, snapshot ecc...
+- replication
+- assign different resources
 
-Lift and Shift: migrating monolithic application from your old servers to the cloud. Not changing anything
+## Disadvantages:
 
-## Ecosystem
+- overhead
+  - multiple layers to go through
 
-Overview on the industry. We looked at AWS offerings and costs
+## Common of the shelf hardware (COTS)
 
-General view just because is useful to know
+- hardware is not important (within reason)
+  - just buy the cheapest
+
+## Lightweight virtualization, Containers:
+
+- docker
+- micro vms
+- ecc...
+
+less isolation, less security
+
+## Cloud native
+
+stuff already developed to be packaged and executed in containers. no more monolithic software.
+
+## DevOps
+
+Develop and Operate. Person which knows ho to do both things
+
+TODO: read about DevOps
+
+development strategy:
+  - continuos loop development
+  - continuos testing in the production environment
+
+## Datacenter
+
+IPS. Innovation -> Product -> Service
+
+- economy of scale
+- pay someone to do handle the infrastructure for you
+- Big requirements
+
+> Spoiler: On friday: Infrastructure as Code
+
+ISP didn't sail the boat when it was time. They could have conquered the market.
+
+## What is the course about
+
+proceed to yap about what the course is about

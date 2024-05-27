@@ -1,6 +1,8 @@
 # Lecture 24/4/24
 
-## Cloud networking
+# Topic: Cloud networking (1 hour)
+
+## Cloud networking (1h - short lesson)
 
 Slides: 101 - 125
 

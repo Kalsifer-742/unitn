@@ -1,5 +1,7 @@
 # Lecture 3/5/24
 
+# Topic: Lab07 (Kubernetes 2)
+
 ## Object Model
 
 ### Deployment

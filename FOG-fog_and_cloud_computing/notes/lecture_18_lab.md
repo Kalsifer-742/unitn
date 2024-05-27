@@ -1,4 +1,6 @@
-# Lecture 9/5/24
+# Lecture 8/5/24
+
+# Topic: Lab08 (Kubernetes 3)
 
 Slide lab 08
 

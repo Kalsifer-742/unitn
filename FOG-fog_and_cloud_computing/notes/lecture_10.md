@@ -1,48 +1,42 @@
-# Lecture 17/04/24
+# Lecture 03/04/23
 
-Slides: 35 - 57
+# Topic: Cloud virtualisation
 
-## Topologies
+## Cloud Virtualization
 
-### Clos Network
+Difference in disk space between full isolation and lightweight isolation is not huge.
+This is because the kernel is the only part that is reused. And the kernel is not something huge(the linux kernel is about 100Mb)
 
-Multistage switching network
+## Docker
 
-`k >= n`: math rule that ensures that the network is non blocking
+Important change of perspective. Docker focuses on applications.
+It aims to be easy for the user.
 
-### Fat tree
+It's different from LXC which is a user for system administrators.
 
-Imagine to fold a clos network -> fat tree
+### Union File System
 
-Proposed ip addressing. It can be a good way to organize IPs.
+It's a file system that works on top of other file-systems.
+It is more of a mounting mechanism than a file system (it mounts multiple directories to a singel root)
 
-Suffix table is an additional routing table. It's used to do some spreading/load balancing 
+As an example think of `/mnt` where you can have and `ext3` usb and a `ext4` disk mounted at the same time.
 
-il suffix table regola le connessioni verso l'alto. fa una specie di spreading/load balancing upward.
+### Docker layered file system
 
-Congestions are a problem. Congestions are common.
-It's difficult to exploit the available capacity of your network.
+Docker uses a layered file system.
 
-### Workloads
+### Properties
 
-Flows
+- Copy on Write (CoW)
+- Simulation of removal by whiteout file
+- Only diffs are stored
 
-- small: 55%
-- medium: 40%
-- large: 5%
+### Automatic build by Dockerfile
 
-How to balance workloads ?
+### Docker compose
 
-#### Solutions
+Automatic setup for multi-container Docker applications
 
-##### Hedera
+### Orchestration
 
-I assume that small flows don't saturate the network.
-I Consider only elephant flows. For each elephant flow I search a free path to be used only for that flow.
-
-##### CONGA
-
-##### DRILL
-
-There are even more solutions. Every solution has pros and cons.
-
+Kubernetes

@@ -1,5 +1,7 @@
 # Lecture 06/03/24
 
+# Topic: Lab01 (Reproducible and portable environments)
+
 ## Repeatable and Portable Environments
 
 It works on my machine should only be a meme

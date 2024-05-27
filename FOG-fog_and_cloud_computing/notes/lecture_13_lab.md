@@ -1,5 +1,7 @@
 # Lecture 12/04/24
 
+# Topic: Lab06 (Kubernetes 1)
+
 ## Kubernetes aka k8s
 
 _Kubernetes is an open-source
