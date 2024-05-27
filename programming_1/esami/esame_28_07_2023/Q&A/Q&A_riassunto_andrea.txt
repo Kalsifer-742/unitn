@@ -1,0 +1,40 @@
+1.	ricerca di una parola all'interno del testo con wildcards (!ao qualunque parola che finisce con ao va bene)
+	parole con lunghezza massima definite dall'utente
+	si può usare cstring
+
+2.	Sulla ricorsione
+	verterà sulle funzioni di Taylor (approssimazione ti Taylor di funzioni di matematica)
+	Data una approssimazione ad una certa profondità di una funzione, estrarre i coefficienti intermedi 
+	(possibile condizione di terminazione: valore step precedente - step attuale in valore assoluto > o < di un certo valore)
+	Utile l'elevazione a potenza o eventualmente i fattoriali
+	La funzione è fissa
+	Esercizio già apparso come idea della ricorsione
+	Differenza salvare in una lista i risultati intermedi
+	difficoltà: costruire la lista e memorizzazione (la lunghezza della lista non è data) se è un array (quando arrivo in fondo so la dimensione e quando torno indetro alloco l'array)
+	guardare gli esercizzi di bastiani (c'è una parte de...)? 
+	hint: una funzione che conta la dimensione e una poi che alloca (non è importante l'efficienza) ovviamente senza cicli for
+	hint: assicurarsi di allocare la lista
+	hint: attenzione a non allocare un nodo spurio in più all'inizio o alla fine
+	hint: ricordarsi di deallocare
+	
+3.	Utilizzerà code o stack
+	c'è uno pseudocodice da implementare
+	code e stack se servono sono già fornite
+	basta tradurre
+	
+
+Lode	Falsa riga dell'ultimo appello, qualche operazione sulle matrice (prodotti, somme)
+	Tipo: calcolare il terminante/trasposto/determinante di una matrice
+
+
+
+
+hint random
+	occhio agli indici negativi
+	la dimensione di un array va da 0 a n-1
+	per una stringa di lunghezza 5 serve un array di lunghezza 6 ??
+	Tipico errore: saper passare le cose per riferimento
+	In generale le variabili non sono inizializzate
+	Generalmente si mette a null nella funzione che poi chiama quella ricorsiva
+	Gestire anche il caso di lunghezza = 0
+	

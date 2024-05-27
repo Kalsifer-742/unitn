@@ -1,0 +1,27 @@
+#mapid { 
+    height: 30vw; 
+    width: 40vw 
+}
+#button {
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+}
+#button > button{
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10%;
+    background-color: #f1f1f1;
+    color: #000000;
+    padding: 1vh 1vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vh;
+    transition: 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+#button > button:hover {
+    transition: 300ms ease-in-out, color 300ms ease-in-out;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 6px 10px 0 rgba(0,0,0,0.19)
+}

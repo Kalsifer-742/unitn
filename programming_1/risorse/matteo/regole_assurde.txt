@@ -1,0 +1,3 @@
+- fstream: usare open() e close() invece di costruttore e distruttore
+- non usare mai break e continue
+- niente return all'interno di un loop

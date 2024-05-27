@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- custom fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet"> 
+    
+    <title>SpeedRead</title>
+
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-image: linear-gradient(white, #ff0080)
+        }
+        .block{
+            width: 40vw;
+            margin-left: 20vw;
+            margin-top: 1vh;
+        }
+        #text_1{
+            font-family: 'Permanent Marker', cursive;
+            font-size: 5vw;
+        }
+        #text_2{
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5vw;
+            margin: 3% 1%;
+        }
+        #word{
+            font-size: 5vw;
+            position: relative;
+            float: left;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #letter{
+            color:azure;
+        }
+
+        #input-text{
+            background-color:#fe0179;
+            font-family: 'PT Mono', monospace;
+            height: 20vh;
+            border: none;
+            display: inline-block;
+        }
+        #output-text{
+            background-color: #ff0080;
+            height: 20vh;
+        }
+
+        .control{
+            background-color: rgb(241, 231, 222);
+            font-family: 'Permanent Marker', cursive;
+            width: 20%;
+            padding: 1%;
+            margin: 3% 1%;
+            border: none;
+        }
+        #controls{
+            background-color: #ff0080;
+        }
+        #speed{
+            background-color: rgb(241, 231, 222);
+            width: 10%;
+            margin-bottom: 10px;
+            padding: 1.5%;
+            border: none;
+        }
+
+        #colors{
+            display: inline-block;
+            float: right;
+            margin-right: 3vw;
+        }
+    </style>
+</head>
+<body>
+    <div id="text_1" class="block">Text to read</div>
+
+    <textarea id="input-text" class="block">
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+Amet iure libero delectus voluptates saepe, reprehenderit animi provident porro suscipit aut repudiandae quidem omnis ducimus,
+velit eligendi obcaecati alias, cupiditate minima.
+    </textarea>
+
+    <div id="colors">
+        <div style="display: inline-block">
+            <div style="margin-bottom: 1.3vh; font-family: 'Permanent Marker', cursive; font-size: 1.5vw">Blocks</div> 
+            <div style="font-family: 'Permanent Marker', cursive; font-size: 1.5vw">background</div>
+        </div>
+        <div style="display: inline-block; margin-left: 1vw">
+            <input type="color" id="colorPicker1" value="#000000" onchange="colorUpgrade('.block', 1)" style="height: 5vh; width: 3.5vw"></input> <br>
+            <input type="color" id="colorPicker2" value="#000000" onchange="colorUpgrade('body', 2)" style="height: 5vh; width: 3.5vw"></input>
+        </div>   
+        <div style="margin-top: 4vh; font-family: 'Permanent Marker', cursive; font-size: 1.5vw">
+            Max Speed [record]
+            <div id="speedRecord" style="text-align: center"></div>
+        </div>
+        <div style="margin-top: 1vh; font-family: 'Permanent Marker', cursive; font-size: 1.5vw">
+            Select a text
+        </div> 
+        <select  id="texts" style="display: block; margin-left: 3vw; height: 3vh; width: 8.5vw; background-color: rgb(241, 231, 222)" onchange="text()">
+            <option value="select">-- seleziona un testo --</option>
+            <option value="templari">templari</option>
+            <option value="alchimia">alchimia</option>
+        </select>    
+    </div>
+
+    <div id="controls" class="block">
+        <button type="button" onclick="run(localStorage.getItem('index'))" class="control" id="start">START</button>
+        <button type="button" onclick="clearInterval(handle); document.querySelector('#start').innerText = 'RESUME'" class="control">STOP</button>
+        <button type="button" onclick="clearInterval(handle); run(0)" class="control">RESTART</button>
+        <br>
+        <span id="text_2">Parole al minuto:</span> 
+        <input type="text" value="250" onchange="updateSpeed()" id="speed"></input>
+    </div>
+    
+    <div id="output-text" class="block">
+        <span id="word"></span>
+    </div>
+
+    <script>
+        "use strict";
+
+        if(typeof(localStorage.getItem("index")) == undefined)
+        {
+            localStorage.setItem("index", 0);
+        }
+        if(typeof(localStorage.getItem("maxSpeed")) == undefined)
+        {
+            localStorage.setItem("maxSpeed", 0);
+        }
+
+        let handle;
+        let n = 0;        
+
+        function run(j){
+            n = j;
+            let letters;
+            let word = "";
+            let words = document.querySelector("#input-text").value.split(/\s/g);
+            handle = setInterval(()=>{
+                if(words[n] == undefined)
+                {
+                    document.querySelector("#word").innerHTML = ("E" + "<span id=\"letter\"> N </span>" + "D");
+                    clearInterval(handle);
+                } 
+                else
+                {
+                    letters = words[n++].split('');
+                    for (let index = 0; index < letters.length; index++) {
+                        if(index == ~~(letters.length/2) /*Math.floor(letters.length/2)*/ )
+                        {
+                            word += ("<span id=\"letter\">" + letters[index] + "</span>")
+                        }
+                        else
+                        {
+                            word += letters[index];
+                        }
+                    }
+                    document.querySelector("#word").innerHTML = word;
+                    word = "";
+                    localStorage.setItem("index", n);
+                } 
+            }, 60000 / document.querySelector("#speed").value ); //60000ms = 1min
+        };
+
+        /*V2 compressed{
+            
+            // prettier-ignore
+            const start = async () => {
+                for (const word of document.querySelector("#input-text").value.split(" ")) {
+                    document.querySelector("#word").innerHTML = word.split("").map((letter, i) => i == ~~(word.length / 2) ? `<span id="letter">${letter}</span>` : letter).join("")
+                    await new Promise(resolve => setTimeout(resolve, 1000))
+                }
+            }
+
+            By Matteo Guarda
+
+        }*/
+
+        function colorUpgrade(item, colorPickerN){
+            if(item == "body"){
+                document.body.style.backgroundImage = "linear-gradient(white," + document.querySelector("#colorPicker" + colorPickerN).value +")";
+            }
+            else{
+                let array = document.querySelectorAll(item);
+                for (let index = 0; index < array.length; index++) {
+                    array[index].style.backgroundColor = document.querySelector("#colorPicker" + colorPickerN).value;             
+                }
+            }
+        }
+
+        document.querySelector("#speedRecord").innerText = localStorage.getItem("maxSpeed");
+        function updateSpeed()
+        {
+            localStorage.setItem("maxSpeed", document.querySelector("#speed").value);
+            document.querySelector("#speedRecord").innerText = localStorage.getItem("maxSpeed");
+        }
+
+        function text(){
+            switch(document.querySelector("#texts").value){
+                case "select":
+                    document.querySelector("#input-text").value = "Lorem ipsum dolor sit amet consectetur adipisicing elit.Amet iure libero delectus voluptates saepe, reprehenderit animi provident porro suscipit aut repudiandae quidem omnis ducimus,velit eligendi obcaecati alias, cupiditate minima.";
+                break;
+                case "templari":
+                    document.querySelector("#input-text").value = "Quello dei Pauperes commilitones Christi templique Salomonis ('Poveri compagni d'armi di Cristo e del tempio di Salomone'), meglio noti come cavalieri templari o semplicemente templari, fu uno dei primi e più noti ordini religiosi cavallereschi cristiani medievali. La nascita dell'ordine si colloca nella Terra santa al centro delle guerre tra forze cristiane e islamiche scoppiate dopo la prima crociata indetta nel 1096. In quell'epoca le strade della Terrasanta erano percorse da pellegrini provenienti da tutta Europa, che venivano spesso assaliti e depredati. Per difendere i luoghi santi e i pellegrini, nacquero diversi ordini religiosi. Intorno al 1118-1119 un pugno di cavalieri decise di fondare il nucleo originario dell'ordine templare, dandosi il compito di assicurare l'incolumità dei numerosi pellegrini europei che continuavano a visitare Gerusalemme. L'ordine venne ufficializzato nel 1129, assumendo una regola monastica, con l'appoggio di Bernardo di Chiaravalle. Il doppio ruolo di monaci e combattenti, che contraddistinse l'Ordine templare negli anni della sua maturità, suscitò naturalmente perplessità in ambito cristiano" ;
+                break;
+                case "alchimia":
+                    document.querySelector("#input-text").value = "L' alchimia è un antico sistema filosofico esoterico che si espresse attraverso il linguaggio di svariate discipline come la chimica, la fisica, l'astrologia, la metallurgia e la medicina lasciando numerose tracce nella storia dell'arte. Il pensiero alchemico è altresì considerato da molti il precursore della chimica moderna prima della nascita del metodo scientifico[1].Diversi sono i grandi obiettivi che si proponevano gli alchimisti: conquistare l'onniscienza, ovvero raggiungere il massimo della conoscenza in tutti i campi della scienza; creare la panacea universale, un rimedio cioè per curare tutte le malattie, generare e prolungare indefinitamente la vita; la trasmutazione delle sostanze e dei metalli, la ricerca della pietra filosofale.Oltre ad essere una disciplina fisica e chimica, l'alchimia implicava un'esperienza di crescita o meglio un processo di liberazione spirituale dell'operatore. In quest'ottica la scienza alchemica viene a rappresentare una conoscenza metafisica e filosofica, assumendo connotati mistici e soteriologici, nel senso che i processi e i simboli alchemici, oltre al significato materiale, relativo alla trasformazione fisica, possiedono un significato interiore, relativo allo sviluppo spirituale." ;
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

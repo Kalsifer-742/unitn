@@ -1,0 +1,74 @@
+C:\Users\2231253\Desktop\MasterMind\MasterMind\bin\Debug\MasterMind.exe.config
+C:\Users\2231253\Desktop\MasterMind\MasterMind\bin\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMind\MasterMind\bin\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMind\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+C:\Users\2231253\Desktop\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+C:\Users\2231253\Desktop\MasterMind\MasterMind\obj\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMind\MasterMind\obj\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\bin\Debug\MasterMind.exe.config
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\bin\Debug\MasterMind.exe
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\bin\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\bin\Debug\Pastel.dll
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\bin\Debug\Pastel.xml
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\obj\Debug\MasterMind.exe
+D:\Kalsifer_HDD\New folder\MasterMindV1\MasterMind\obj\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe.config
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\bin\Debug\Pastel.dll
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\bin\Debug\Pastel.xml
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.exe
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T162440Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe.config
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\bin\Debug\MasterMind.pdb
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\bin\Debug\Pastel.dll
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\bin\Debug\Pastel.xml
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.exe
+D:\Kalsifer_HDD\Downloads\MasterMindV2-20190926T163803Z-001\MasterMindV2\MasterMind\obj\Debug\MasterMind.pdb
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe.config
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\bin\Debug\MasterMind.pdb
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\bin\Debug\Pastel.dll
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\bin\Debug\Pastel.xml
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\obj\Debug\MasterMind.exe
+C:\Users\2231253\Downloads\MasterMindV2\MasterMindV2\MasterMind\obj\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe.config
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\bin\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\bin\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\bin\Debug\Pastel.dll
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\bin\Debug\Pastel.xml
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\obj\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV2\MasterMind\obj\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\bin\Debug\MasterMind.exe.config
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\bin\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\bin\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\bin\Debug\Pastel.dll
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\bin\Debug\Pastel.xml
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\obj\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV3\MasterMindV3\MasterMind\obj\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\bin\Debug\MasterMind.exe.config
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\bin\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\bin\Debug\MasterMind.pdb
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\bin\Debug\Pastel.dll
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\bin\Debug\Pastel.xml
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\obj\Debug\MasterMind.csprojAssemblyReference.cache
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\obj\Debug\MasterMind.csproj.CopyComplete
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\obj\Debug\MasterMind.exe
+C:\Users\2231253\Desktop\MasterMindV4\MasterMind\obj\Debug\MasterMind.pdb

@@ -1,0 +1,9 @@
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\bin\Debug\DrawingTest.exe.config
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\bin\Debug\DrawingTest.exe
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\bin\Debug\DrawingTest.pdb
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.csprojAssemblyReference.cache
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.Form1.resources
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.Properties.Resources.resources
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.csproj.GenerateResource.cache
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.exe
+D:\Kalsifer_HDD\Desktop\DrawingTest\DrawingTest\obj\Debug\DrawingTest.pdb

@@ -1,0 +1,85 @@
+body {
+  width: 100%;
+  height: 100%;
+  padding: 1vw;
+  overflow: auto;
+}
+
+body > * {
+  margin: 1vw;
+  font-size: 1.5vw;
+}
+
+p {
+  margin: 1.5vw 0;
+  padding: 1vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+#title {
+  font-size: 6vw;
+  border-bottom: solid;
+  border-width: 2px;
+}
+
+input {
+  padding: 1vw;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #000000;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+input:hover {
+  background-color: rgba(0, 0, 0, 75%);
+  color: #f1f1f1;
+}
+
+textarea {
+  padding: 1vw;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #000000;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+textarea:hover {
+  background-color: rgba(0, 0, 0, 75%);
+  color: #f1f1f1;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+select {
+  padding: 1vw;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #000000;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+select:hover {
+  background-color: rgba(0, 0, 0, 75%);
+  color: #f1f1f1;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+table,
+th,
+td {
+  border: solid;
+  border-color: black;
+  border-collapse: collapse;
+  padding: 1vw;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #000000;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}
+td:hover {
+  background-color: rgba(0, 0, 0, 75%);
+  color: #f1f1f1;
+  transition: background 300ms ease-in-out, color 300ms ease-in-out;
+}

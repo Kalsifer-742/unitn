@@ -1,0 +1,3 @@
+kill 10 6920
+queue 2 ciao
+fifo /tmp/prova buongiorno

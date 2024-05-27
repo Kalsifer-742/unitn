@@ -1,0 +1,74 @@
+sintassi:
+	#commento
+	
+	echo Visualizzato ed eseguito
+	@echo solo eseguito
+target1: target2
+	@echo '[1] Entering target 1'	
+	@echo '[1] rule (3)'
+	@echo '[1] rule (4)'
+target2: target3
+	@echo '[2] Entering target 2'
+	@echo '[2] rule (2)'
+target3:
+	@echo '[3] Entering target 3'
+	@echo '[3] rule (1)'
+
+ind:
+	@pwd
+	cd ../..
+	@pwd
+	cd ../.. ; pwd
+
+build: deployable.out
+	@echo finished building file
+deployable.out: main.o
+	gcc $< -o $@
+%.o: %.s
+	gcc -c $< -o $@
+
+
+main.s: main.i
+	gcc -S main.i -o main.s
+main.i: main.c
+	gcc -E main.c -o main.i	
+
+
+ONCE:=hello $(LATER)
+EVERY=hello $(LATER)
+LATER=world
+LISTA=$(shell ls)
+LISTA2=$(wildcard *)
+
+vars:
+	#echo 'ONCE'
+	@echo $(ONCE)
+	#echo 'EVERY'
+	@echo $(EVERY)
+
+specials:
+	#LATER contains 'world', EVERY='hello (LATER)'
+	#echo (EVERY)
+	@echo $(EVERY)
+	@echo
+	#eval: LATER+="forever"
+	$(eval LATER+="forever")
+	#echo EVERY
+	@echo $(EVERY)
+	@echo
+	LATER+="and ever"
+	#echo EVERY
+	@echo $(EVERY)
+	@echo
+	#echo (shell ls)
+	@echo $(LISTA)
+	#echo (wildcard *)
+	@echo $(LISTA2)
+
+
+
+clean:
+	rm *.i *.s *.o *.out
+.PHONY: clean build ind vars target3 target2 target1 sintassi specials
+#.INTERMEDIATE: main.i main.s
+

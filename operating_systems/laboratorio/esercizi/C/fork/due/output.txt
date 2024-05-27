@@ -1,0 +1,18 @@
+/home/kalsifer/Desktop/Learning/C/fork/due
+main
+main.c
+output.txt
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 465.8G  0 disk 
+├─sda1        8:1    0   100M  0 part 
+├─sda2        8:2    0    16M  0 part 
+├─sda3        8:3    0 465.1G  0 part 
+└─sda4        8:4    0   604M  0 part 
+sdb           8:16   0 931.5G  0 disk 
+├─sdb1        8:17   0 558.8G  0 part 
+└─sdb2        8:18   0 372.7G  0 part 
+sdc           8:32   0 465.8G  0 disk 
+nvme0n1     259:0    0 465.8G  0 disk 
+├─nvme0n1p1 259:1    0   512M  0 part /boot
+├─nvme0n1p2 259:2    0    16G  0 part [SWAP]
+└─nvme0n1p3 259:3    0 449.3G  0 part /

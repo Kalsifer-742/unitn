@@ -1,0 +1,47 @@
+Riassuntone q&a Roveri luglio:
+1: Sarà un esercizio nel quale dovremo ricercare in un file una parola data dall’utente che avrà una lunghezza massima data, questa parola potrebbe avere una wildcard. Potremo usare strlen, cstring e il prof consiglia di ricordare di dover allocare uno spazio in più rispetto alla lunghezza di una parola per salvare una stringa, per il terminatore di stringa.
+
+Cos’è una wildcard in questo contesto?
+Ci sarà fornito un carattere speciale (+,! ecc…) che darà sempre un risultato positivo se troverà un carattere che non sia uno spazio o un \n, ad esempio:
+
+se + è la nostra wildcard, cercheremo la parola +ao+
+dove verrà accettata qualsiasi parola che avrà una sequenza di 4 caratteri validi i quali secondo e terzo carattere siano “ao”
+
+(in pratica basta aggiungere una condizione in più quando si crea la funzione che compara le stringhe, se il carattere che cerchiamo è + nell’esempio e quello che troviamo non è un \n o uno spazio, è un carattere valido)
+
+L’esercizio potrebbe avere l’output in un file o a terminale, non ha specificato quale
+
+————————————————-
+
+Esercizio 2
+
+Un esercizio ricorsivo dove dovremo calcolare il polinomio di taylor di una funzione. Lui ci fornirà le derivate di una funzione e dovremo calcolare i coefficienti fino a raggiungere una particolare precisione data. I coefficienti dovremo metterli all’interno di una lista di cui dovremo calcolare la grandezza a runtime.
+Ricordatevi di studiare come deallocare ricorsivamente la lista perchè il prof ha detto che potrebbe servire.
+
+Passate sempre per riferimento la lista se la modificate, controllate che il puntatore all’inizio sia inizializzato a null e che esiste sempre il caso estremo al quale arrivare: la lista vuota.
+Ci dovrebbe essere un esame passato di sebastiani molto simile ma fatto con un array invece che una lista
+
+https://inprogrammer.com/taylor-series-using-recursion/
+
+—————————————————
+
+Esercizio 3:
+Dovremo interpretare uno pseudocodice con una coda o stack già fornito, con coda o stack già implementata
+(quindi la consegna sarà molto descrittiva, si tratterà solo di interpretarla)
+
+—————————————————
+
+Esercizio LODE:
+sulla falsariga dello scorso appello, calcolo su matrici, tipo calcolo di una trasposta o determinante di una matrice
+
+—————————————————
+
+Consigli extra:
+gli array vanno da 0 a n-1
+nel secondo esercizio ricordate di deallocare tutto
+
+per passare a una funzione uno stream per l’output:
+void funzione(fstream nomestream)
+{
+    nomestream << output;
+}
