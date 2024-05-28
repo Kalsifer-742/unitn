@@ -2,63 +2,115 @@
 
 # Topic: Cloud Storage
 
-## Cloud storage 
-
 ## Types
+
+![storage types](assets/storage_types.png)
 
 ### Block storage
 
-data stored in fixed-size blocks. it's raw and fast. it's the foundation of the other storage solutions
+- Data stored in fixed-size blocks. 
+- It's raw and fast. 
+- It's the foundation of the other storage solutions
 
 ### File storage
 
-data is stored as structured files. it uses a file system. file system can be local or distributed
+- Data is stored as structured files. 
+- It uses a file system that controls how data is stored and retrieved. 
+- file system can be local or distributed.
+  - local: `ext4`
+  - distributed: `NFS`(Network File System)
 
 ### Object storage
 
-completely different paradigm. an object is a collection of data and its metadata. no hierarchy.
+- Different paradigm. 
+- Object: collection of data and its metadata.
+- no hierarchy.
+- fast access to objects
 
-## 2024
+## Block storage
 
-why do we still need block storage ? because other storage types are built on top of it.
+### 2024
+
+Why do we still need block storage ?
+
+Because other storage types are built on top of it.
 
 Block storage is usually used in Storage Area Networks (SAN).
 
-## OpenStack Cinder
+A SAN is a network that connects storage devices.
 
-block storage service
+![SAN](assets/san.png)
 
-slide 18 architecture image
+### OpenStack Cinder
+
+Block storage service
+
+- abstract the storage technology
+- virtualize the management
+- unified API to attach storage to VMs
+
+![Cinder architecture](assets/cinder_arch.png)
 
 ## File storage
 
-a file is a logical things. it's not garanteed that the file is continuos in memory. the file system connects the logical and real view.
+A file is a logical thing. It's not guaranteed that the file is continuos in memory. The file system connects the logical and real view.
 
-they provide a hierarchical view of the files
+file system:
+
+- logical, hierarchical view of the files
+- provides mechanism for accessing the files
+- local or distributed
 
 ### File system types
 
+#### Local file systems
+
+Run on single machine
+
 #### Distributed file systems
 
-##### NFS
+Manage resources across different machines
 
-based on the client-server paradigm.
+- fault-tolerance
+- store access sharing
+- concurrent fast access
 
-slide 27 shows how it works.
+##### NFS Network File System
 
-obviously there are limitations due to network.
+Provides file system access over a network
+
+- based on the client-server paradigm
+- caching to improve performance
+
+![NFS architecture](assets/nfs_arch.png)
+
+Flow
+
+- To retrieve a file, the client interacts with the local vnode layer
+- The vnode layer then sends the request via the NFS client
+- The server passes it to the vnode layer on the remote host
+- Finally, the remote vnode layer directs it to the remote file system
+
+Cons:
+
+- cache
+  - size
+  - location
+  - writing policy
+  - synchronization
+- consistency
 
 ##### GPFS General Parallel File System
 
-focus on concurrency control
+Focus on concurrency control.
+Supports parallel I/O operations.
 
-parallel I/O operations
+How it works:
 
-how it works ?
-
-write ahead log file
-
-data striping
+- write-ahead log file
+  - fast crash recovery
+- data striping (striping segments data on different physical storage device)
+  - 2 minimum replicas to guarantee consistency
 
 ##### GFS Google File System
 
