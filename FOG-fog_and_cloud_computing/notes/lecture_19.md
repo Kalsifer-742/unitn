@@ -185,17 +185,16 @@ Ex: Nginx:
 - Initialization state
 - Serving state
 
-### AppArmor
+### LSM Linux Security Modules
 
 MAC: Mandatory Access Control system
 
-profile associated to an executable file determining what that file is allowed to do.
+MAC is a policy-based framework that establishes and enforces rules for users and processes when it comes to accessing files, directories, ports, and other resources
+
+AppArmor and SELInux are systems to restrict capabilities. They are very comparable.
+AppArmor is easier to use but a little less capable than SELinux
 
 #### Linux capabilities
-
-LSM(Linux Security Modules)
-
-Brief:
 
 - Unix has 2 categories of processes
   - privileged processes aka `root, ID = 0`
@@ -208,19 +207,30 @@ Brief:
 - Linux has more than 30 capabilities
   - ex: `CAP_SYS_BOOT` the thread can reboot the system
 
+### AppArmor
+
+profiles are based on paths
+
+Profile associated to an executable file determines what that file is allowed to do.
+
+```apparmor
+/usr/bin/firefox {
+    # profile contents
+}
+```
+
 ### SELinux
 
 Security-Enhanced Linux
 
-LSM(Linux Security Modules)
+based on labels.
 
-Constrains how a process can interact whit files and processes
+Constrains how a process can interact with files and processes
 
 - Every file must be labeled by SELinux before policies can be enforced
   - each process runs under a SELinux domain
-  - policies express what access a process has to some files
-
-In the end it limits the files a process can affect if compromised.
+  - policy express the permissions of a process to files
+- limits the files a process can affect if compromised.
 
 ### Sandboxing
 
