@@ -237,15 +237,21 @@ Constrains how a process can interact with files and processes
 - Kata Containers
   - container runtime made with lightweight VMS
   - should perform like docker but provide stronger isolation
+  - \---
+  - ![kata architecture](assets/kata_arch.png)
 - Firecracker
   - minimal VMM
   - uses KVM (Kernel-based Virtual Machine)
   - manages micro VMs
+  - \---
+  - ![firecracker architecture](assets/firecracker_arch.png)
 - gVisor
   - application layer kernel
   - implements a portion of Linux system call interface
     - paravirtualisation
   - provides additional layer of isolation between applications and host
+  - \---
+  - ![gVisor architecture](assets/gvisor_arch.png)
 - Unikernels
   - standalone stripped down OS
   - every application has to be compiled int a Unikernel image with everything it needs
