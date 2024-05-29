@@ -109,93 +109,142 @@ How it works:
 
 - write-ahead log file
   - fast crash recovery
+    - on crash I check the data on the disk against the log and if the two are not consistent I make corrections
 - data striping (striping segments data on different physical storage device)
   - 2 minimum replicas to guarantee consistency
 
 ##### GFS Google File System
 
-custom built in house for google needs
-
-key features:
+Key features:
 
 - scalability and reliability
 - relaxed consistency model
-- push files in batch
+- bulk processing of large files in parallel
 
-key assumptions:
+Key assumptions:
 
 - reads are large and sequential or small and random
-- write are sequential and append only, by multiple clients (log file is an example)
+- write are sequential and append only (log file is an example) from multiple clients
+- commodity hardware continuously fails
+- high bandwidth is more important than real-time
 
-gfs is designed to run on commodity hardware. it's designed to run on hardware that continuously fails
+###### How it works 
 
-how it works ?
-
-- files are segment in very large chunks (64MB)
-  - reduces chunk location requests
+- files segmented in large chunks (64MB)
+  - reduces chunk location requests and metadata
   - improve performance on large files
-  - persistent network location to server location
-- chunk are replicated on a minimum of 3 servers
-- no cache at all. not in the client and not on the server
+  - more continuous network location to server location
+- chunks are replicated on a minimum of 3 servers
+- no cache at all. not in the client and not on the server.
+  - the necessary bookkeeping is not worth it
 
-**master** in charge of the cluster state
+**Master**
 
-control plane and data plane are separated.
+- in charge of the cluster state
+  - manages consistency and critical operations
+- great difference between control plane and data plane
 
-slide 37 good pictures showing how the master works. arrow are logical connections. black lines are actual connections ?
+![GFS architecture](assets/gfs_arch.png)
 
-GFS is an abstraction over the linux file system
+> **thick lines** are data
+> _thin lines_ are control
+
+Write request example:
+
+- Client contacts the master, which assigns a lease to one of the chunk servers (no lease for that chunk exists)
+  - Master replies with the ID of the primary and secondary chunk servers holding replicas of the chunk
+- Client sends data to all chunk servers holding replicas
+  - Chunk servers stores data in internal LRU (Least Recently Used) buffer and send ACK to client
+- Client send write request to primary chunk server once it got ACKs from all chunk servers holding replicas
+- Primary chunk server sends write to all secondaries
+- Each secondary applies mutations in the order of the sequence number and sends ACK back to primary
+- After receiving ACK from all secondaries, primary ACKs client
 
 ## Object Storage
 
-mix of block storage and file storage
+More flexible storage models which is a mix of the above
 
-every cloud provider has its own flavour.
+![object storage](assets/object_storage.png)
 
-we can call it software defined storage.
+We can call it **software defined storage** because every vendor has his own flavor
 
-we take swift as an example.
+### OpenStack Swift
 
-slide 43 is a comparison of swift and classic file storage.
+- scalability
+- multi-user
+- high-concurrency
+- ideal for unstructured data that grows without bound
 
-hierarchy: your account is the top level of hierarchy
+![swift compared to classical storage](assets/swift_vs_classic.png)
 
-- containers: namespace for objects. it's some kind of a folder
-- storage policy: defines how data is stored
-  - ex: a container should use only ssd
-  - applied at container level
-- ring
-  - mapping data partitions and storage location
-  - uses hash
-  - i combine account, container and policy mapped to a particular location
+Selling points:
 
+- horizontal scaling
+- fault-tolerant and self-healing
+- easy to manage
+  - thanks to REST API
+- agnostic to what is stored
+
+#### Hierarchy
+
+![swift hierarchy](assets/swift_hierarchy.png)
+
+- -> Account
+  - user account
+  - your account is the level in the hierarchy of your files
+  - -> Containers
+    - namespace for objects (folder)
+    - ACL to access object
+      - ACL for objects is associated to the container and not to the individual object
+    - storage policy: defines how data is stored
+      - ex: a container should use only ssd
+      - applied at container level
+    - -> Object
+      - Stores data content
+      - Uncompressed and unencrypted
+
+- Ring
+  - mapping data and storage location
+    - uses hash to perform the mapping to a particular location
+    - combines:
+      - account
+      - container
+      - policy
+
+#### Architecture
+
+![swift architecture](assets/swift_arch.png)
 
 Servers:
 
-- proxy: front-end of the swift architecture
-  - api endpoint
-  - stuff...
-- storage
-  - object
-    - serves binary data
-  - container
-    - handles listing of objects
-  - account
-    - list contents rather than objects
-- consistency
-  - replicator
-    - ensure all replicas are in sync
-  - updater
-    - manages the replication process
-  - auditors
+- Proxy server
+  - front-end of the swift architecture
+  - API endpoint
+- Storage server
+  - object server
+    - manages objects stored on local devices
+  - Container server
+    - lists objects
+    - it only knows in which container the objects are
+  - Account server
+    - list containers
+- Consistency server
+  - Replicator server
+    - ensures all replicas are in sync
+  - Updater server
+    - Manages the replication process
+    - handles congestions and failures
+  - Auditors
     - craws local server checking integrity
+    - replace corrupted files with healthy backups
 
-Operations:
+Operation example: PUT
 
-slide 59 for visual representation
+![swift_put](assets/swift_put.png)
 
-- PUT
-  - use the ring to get the hash and know which storage server to contact
-  - replicator contacts object server and copies data to replicas
+## Recap
 
-slide 62 is a recap on which storage you should use
+![recap](assets/storage_recap.png)
+
+> GCPSketchnote
+> thecloudgirl.dev
