@@ -62,21 +62,37 @@ _programma perso nel tempo ma simile_
       - [Esempi](#esempi)
   - [Collections](#collections)
     - [Limitazioni](#limitazioni-1)
-  - [Uguaglianza e identitá: equals](#uguaglianza-e-identitá-equals)
-  - [Comparable](#comparable)
-  - [Comparator](#comparator)
-  - [Gestione degli errori / Eccezioni](#gestione-degli-errori--eccezioni)
+  - [Uguagliaza tra oggetti: `equals`](#uguagliaza-tra-oggetti-equals)
+    - [`equals`](#equals)
+      - [`GetClass`](#getclass)
+    - [Hash](#hash)
+    - [Esempio implementazione di equals](#esempio-implementazione-di-equals)
+    - [Warning](#warning)
+  - [Comparable \& Comparator](#comparable--comparator)
+    - [Comparable](#comparable)
+    - [Comparator](#comparator)
+  - [Eccezioni](#eccezioni)
+    - [Esempio](#esempio-1)
   - [Iteratori](#iteratori)
-  - [Eventi pressione tasti](#eventi-pressione-tasti)
-  - [Propagazione eventi](#propagazione-eventi)
-  - [Lambda expressions](#lambda-expressions)
-  - [Extras](#extras)
-  - [Clonazione](#clonazione)
+    - [Warning](#warning-1)
+  - [Classi anonime \& Lambda expressions](#classi-anonime--lambda-expressions)
+    - [How](#how)
+      - [Classe anonima](#classe-anonima)
+      - [Lambda](#lambda)
+    - [classi anonime vs lambda](#classi-anonime-vs-lambda)
+  - [`clone`](#clone)
+    - [shallow copy](#shallow-copy)
+    - [deep copy](#deep-copy)
+    - [`Cloneable`](#cloneable)
+    - [Copy constructor](#copy-constructor)
   - [Composition VS Inheritance](#composition-vs-inheritance)
   - [JavaFX](#javafx)
+    - [Errore tipico](#errore-tipico)
+    - [Propagazione eventi](#propagazione-eventi)
+      - [Discesa](#discesa)
+      - [Risalita](#risalita)
+        - [Consume](#consume)
     - [MVC](#mvc)
-  - [Hashcode](#hashcode)
-      - [Errore tipico](#errore-tipico)
 
 ## Programming languages theory
 
@@ -299,7 +315,7 @@ add(new Integer(3)) -> add(3)
 
 ## Interfacce
 
-_ormai sei esperto_
+_ormai sei esperto :) (rust <3)_
 
 - possono essere usate come tipo statico
 - non possono essere istanziate
@@ -415,118 +431,143 @@ Operations
 
 Nascono ancora prima di aggiungere i generics quindi sono abbastanza rotte. I problemi sono i soliti dovuti alla type erasure.
 
-## Uguaglianza e identitá: equals
+## Uguagliaza tra oggetti: `equals`
 
-> Durante il confronto tra oggetti devo fare particolare attenzione. Sto confrontando due indirizzi che quindi sono diversi. Devo affidarmi a valori interni o diversamente.
+quando confronto due oggetti con l'operatore `==` confronto gli indirizzi. quindi il risultato non è intuitivo.
 
-- ==
-  - su oggetti controlla gli indirizzi
-- equals
-  - di base non risolve niente perché é implementata con == ed é pensata per essere overridata
-  - la lezione procede a mostrare come implementare per bene un metodo equals pensando a tutti gli imprevisti del caso
-  - GetClass
-    - che é meno generico di istanceOf che considera le sottoclassi
-    - mi permette di controllare se 2 oggetti sono precisamente della stessa classe
-- intellij ci puó generare il metodo equals automaticamente
+### `equals`
+
+l'implementazine di default non risolve il problema perchè è implementata tramite `==`
+
+
+#### `GetClass`
+
+metodo alternativo a `instanceof` che considera anche le sottoclassi
+
+- ritorna le informazioni sulla classe tra cui ovviamente il nome
+- mi permette di controllare se 2 oggetti sono precisamente della stessa classe
+
+### Hash
+
+sempre fare l'override di `hash` se si fa l'ovverride di `equals`
+
+- non è tecnicamente necessario ma altrimenti incontriamo problemi con strutture dati base sull'hash come la map
+- [stackoverflow](https://stackoverflow.com/questions/2265503/why-do-i-need-to-override-the-equals-and-hashcode-methods-in-java)
+
+### Esempio implementazione di equals
+
+IntelliJ può generare il metodo equals per noi
 
 ```java
 @Override
 public boolean equals(Object o) {
-if (this == o) return true;
-if (o == null || getClass() != o.getClass()) return false;
-P p = (P) o;
-return x == p.x && y == p.y;
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    C c = (C) o;
+    return x == c.x && y == c.y;
 }
+
 @Override
 public int hashCode() {
-return Objects.
-hash(x, y);
+    return Objects.hash(x, y);
 }
 ```
 
-## Comparable
+### Warning
 
-> Definisce un unico metodo
-`int compareTo(Object o)`
-che ritorna
-- un intero negativo se this è minore di o
-- un intero positivo se this è maggiore di o
-- 0 se this è uguale a o
+- equals uguali -> hashcode uguali
+- equals diversi ->(non garantito) hashcode diversi
+  - gli hash possono avere collissioni
+- hashcode diversi -> oggetti diversi
 
-## Comparator
+_non valgolo gli inversi delle regole sopra citate_
 
-> Definisce un unico metodo
-`int compare(Object o1, Object o2)`
-che permette di delegare il confronto ad una classe separata. Definisco una classe per ogni metodo di comparazione necessario. La classe implementa solo il metodo compare. É una classe ausiliara piccolissima
+## Comparable & Comparator
 
-Posso usare un comparatore esterno per avere diversi metodi di paragone quando mi serve.
-alla funzione sort posso passare un comparatore diverso invece di quello intrinseco della clase
-
-## Gestione degli errori / Eccezioni
-
-Alcuni errori vanno gestiti obbligatoriamente.
-Gli errori di runtime non siamo obbligati a gestirli. altrimenti per esempio ogni possibile `NULL` value richiederebbe un` try catch`.
+### Comparable
 
 ```java
-
-void metodo_exception() throws TipoEccezzione1, TipoEccezzione2 {
-  try 
-  {
-    //codice rischioso che potrebbe generare un errore
-    int z = Integer.parseInt(inputString);
-    System.out.println("input valido!");
-  } 
-  catch (TipoEccezzione e)
-  {
-    //codice da eseguire se si verifica un errore
-    System.out.println("input non valido!");
-    throw new TipoEccezzione(parametro);
-  }
-  catch (TipoEccezzione e)
-  {
-    // posso avere più di un catch
-    // il primo catch corretto per quella eccezione viene eseguito
-  }
-  finally
-  {
-    //codice da eseguire in ogni caso
-  }
-
-  throw new TipoEccezzione2(parametro);
-  
-  /*
-    The finally block always executes when the try
-    block exits. This ensures that the finally block is
-    executed even if an unexpected exception
-    occurs. But finally is useful for more than just
-    exception handling — it allows the programmer
-    to avoid having cleanup code accidentally
-    bypassed by a return, continue, or break.
-    Putting cleanup code in a finally block is always
-    a good practice, even when no exceptions are
-    anticipated.
-  */
+int compareTo(Object o)
 ```
 
-Non posso tirare errori che non siano uno un sottotipo dell'alto.
-se il metodo dice che lancia un tipo di errore all'interno posso lanciare solo figli di quell'errore.
+return value
 
-eridetarietè ed errori si incrociano e bisogna stare attenti alla gerarchia degli errori
+- `< 0` se `this` è minore di `o`
+- `> 0` se `this` è maggiore di `o`
+- 0 se `this` è uguale a o
+
+### Comparator
+
+```java
+int compare(Object o1, Object o2)
+```
+
+permette di delegare il confronto ad una classe separata. creo una classe ausiliaria piccolissima
+
+- definisco una classe per ogni metodo di comparazione necessario.
+- la classe implementa solo il metodo compare.
+
+alla funzione sort posso passare un comparatore diverso invece di quello della classe
+
+## Eccezioni
+
+In java non c'è l'obbligo di gestire tutti gli errori
+
+- Gli errori di runtime possono essere ignorati
+
+gli errori che possono essere lanciati possono essere quelli dichiarati o loro figli
+
+### Esempio
+
+```java
+void methodWithExceptions(String inputString) throws ExceptionA, ExceptionB {
+    try {
+        //codice rischioso che potrebbe generare un errore
+        int c = Integer.parseInt(inputString);
+    } catch (ExceptionA e) {
+        //codice da eseguire se si verifica un errore
+        throw new ExceptionA();
+    } catch (ExceptionB e) {
+        // posso avere più di un catch
+        // il primo catch corretto per quella eccezione viene eseguito
+    } finally {
+        //codice da eseguire sempre dopo aver provato ad eseguire del codice che può fallire
+    }
+  
+    /*
+        The finally block always executes when the try
+        block exits. This ensures that the finally block is
+        executed even if an unexpected exception
+        occurs. But finally is useful for more than just
+        exception handling — it allows the programmer
+        to avoid having cleanup code accidentally
+        bypassed by a return, continue, or break.
+        Putting cleanup code in a finally block is always
+        a good practice, even when no exceptions are
+        anticipated.
+    */
+}
+```
 
 ## Iteratori
 
-attenzione ai for each perchè il ciclo interno avanza anche l'operatore esterno se ci facciamo stampare la cosa esterna
+_ormai sei esperto :) (rust <3)_
+
+- `hasNext()`
+- `next()`
+
+### Warning
 
 ```java
+// attenzione!
+// il ciclo interno avanza anche l'iteratore esterno
 for(Iterator<String> i = words.iterator(); i.hasNext();) {
   for(Iterator<String> j = words.iterator(); j.hasNext();) {
     System.out.println(i.next() + " " + j.next());
   }
 }
 
-
-//uguale
-
+// for-each ci da l'effetto desiderato
 for(String i: words) {
   for(String j: parole) {
     System.out.println(i + " " + j);
@@ -534,212 +575,133 @@ for(String i: words) {
 }
 ```
 
-## Eventi pressione tasti
-
-- `KEYTYPED`
-  - `e.getCharacter().equals("W")`
-
-- `KEYPRESSED` e `KEYRELEASED`
-  - `e.getCode() == KeyCode.W`
-
----
-
-- `fireEvent()`
-  - utile per evitare di riscrivere lo stesso codice
-  - utilizzo l' eventhandler per l' evento specifico dell' oggetto su cui viene chiamato
+## Classi anonime & Lambda expressions
 
 ```java
-...
-if (keyEvent.getCharacter().equals("u”)) {
-  b1.fireEvent(new ActionEvent());
-...
-```
-
-## Propagazione eventi
-
-- Focus
-  - finestra/componente selezionato
-
----
-
-- Propagazione gerarchica degli eventi
-  - l' evento scende gerarchicamente per poi risalire allo stesso modo
-    - capturing (filters)
-      - gli eventi scendono la catena gerarchica fino a raggiungere il componente che li ha creati
-      - decido che eventi gestisce l'handler
-    - bubbling (handlers)
-      - gli eventi risalgono la catena gerarchica
-
-> voglio che funzioni cosí perché per esempio in una calcolatrice posso creare un handler sul contenitore dei tasti che se scritto opportunamente in modo generico interecetta gli eventi dei tasti. Altrimenti dovrei scrivere un sacco di handler o assegnare lo stesso handler a tutti i tasti
-
-- TARGET
-  - mi dice chi ha generato l' evento (o perché é stato generato un evento)
-- SOURCE
-  - mi dice chi sta gestendo l' evento
-
----
-
-> posso bloccare gli eventi nella catena
-
-```java
-t.consume()
-```
-
----
-
-```java
-...
-EventHandler<KeyEvent> keyEventHandler =
-  new EventHandler<KeyEvent>(){
-  public void handle(KeyEvent keyEvent) {
-    System.out.println(keyEvent.getSource() + " =>" + keyEvent.getTarget());
-
-    switch (keyEvent.getCharacter()){
-      case "u":
-      case "U":
-        b1.fireEvent(new ActionEvent()); b1.requestFocus();
-        break;
-      case "d":
-      case "D":
-        b2.fireEvent(new ActionEvent()); b2.requestFocus();
-        break;
-    }
-  };
-...
-stage.addEventHandler(KeyEvent.KEY_PRESSED,keyEventHandler);
-...
-```
-
-classi anonime con le interfacce. utile per gli event handler per cui non voglio creare un'intera classe solo per gestire un evento.
-
-## Lambda expressions
-
-```java
-c.setOnMouseEntered(new EventHandler<MouseEvent>() {
+pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
     public void handle(MouseEvent event) {
-        System.out.print("Entered");
-        c.setFill(Color.RED);
+        pane.setFill(Color.RED);
     }
-);
+});
 
-c.setOnMouseEntered((MouseEvent event) -> {
-        System.out.print("Entered");
-        c.setFill(Color.RED);
+pane.setOnMouseClicked((MouseEvent event) -> {
+        pane.setFill(Color.RED);
     }
 );
 ```
 
-Per scrivere una Lambda specifico un'interfaccia che ha 1 solo metodo.
-Quindi gli passo 1 solo metodo che è l'unica cosa che posso eseguire. rispetto la firma. (l'ho spiegato male, spero che il me futuro capirà)
+### How
 
-- Consumer
-- High order function
+`setOnMouseClicked()` si aspetta una classe `EventHandler<>` che implementa il metodo `handle()`
 
-classi anonime vs lambda:
+#### Classe anonima
 
-- classi anonime utilizza più memoria sia come storage che come ram
+passo al metodo un'istanza di una classe senza nome.
 
-> se possibile usare interfacce standard. poi ci sono un sacco di convenzioni e consigli
+in Java non è possibile istanziare interfacce. la sintassi quindi è un po "scorretta".
 
-Inferring the functional interfaces
+il nome rappresenta l'interfaccia che voglio implementare. Viene quindi creata una classe anonima che implementa quell'interfaccia.
 
-- Does the interface have only one abstract (unimplemented) method ?
-- Do the parameters (types) of the lambda expression match the parameters (types) of the single method ?
-- Does the return type of the lambda expression match the return type of the single method ?
+#### Lambda
 
-## Extras
+le lamba permettono di implementare interfaccio funzionali.
 
-- dentro le lamba attraverso this posso solo riferirmi all'oggetto che la usa
+interfaccia funzionale:
 
-- Parametricity
+- interfaccia che contiene 1 solo metodo astratto
 
-## Clonazione
+quindi quando definisco la lambda posso ometter il nome del metodo che sto implementando. viene dato per scontato che sto fornendo un'implementazione di quel metodo.
 
-- shallow copy
-  - copia del puntatore
-  - `A = B`
-- deep copy
-  - copia della struttura e dei suoi valori
-  - `a = b.clone()`
+_le lambda catturano lo scope in cui vengono definite_
+
+### classi anonime vs lambda
+
+- classi anonime utilizzano più memoria sia come storage che come ram
+
+## `clone`
+
+esistono 2 modi di copiare un oggetto
+
+### shallow copy
+
+copia del puntatore
+
+- `a = b`
+
+### deep copy
+
+copia 1 a 1 della struttura dati e dei suoi valori
+
+- `a = b.clone()`
+
+### `Cloneable`
+
+A quanto pare è difficile implementare correttamente l'operazione clone e quindi praticamente nessuno lo fa e si utilizzano altri metodi
+
+### Copy constructor
 
 ```java
-protected Object clone()
-    throws CloneNotSupportedException
-//Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object.
-```
-
-- the expression: `x.clone() != x` will be `true`,
-- and that the expression: `x.clone().getClass() == x.getClass()` will be `true`, but these are not absolute requirements.
-- While it is typically the case that: `x.clone().equals(x)` will be `true`, this is not an absolute requirement.
-
-```java
-class P implements Cloneable {
-    ...
-    public Object clone(){
-        try {
-            return super.clone(); // copia bit a bit
-        } catch (CloneNotSupportedException e) {
-            System.err.println("Implementation error");
-            System.exit(1);
-        }
-        return null; //qui non arriva mai
+class Person {
+    private String name;
+    private int age;
+ 
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+ 
+    public Person(Person another) {
+        this(another.name, another.age);
     }
 }
 ```
 
-> se clono un oggetto che contiene un array clono il puntatore allo stesso array. Non viene creato un nuovo array uguale perché faccio una copia bit a bit se non specificato diversamente
-
----
-
-- shallow copy
-- deep copy
-
----
-
-> non so perché ha fatto una digressione sulla clonazione degli oggetti in c++
-
 ## Composition VS Inheritance
 
-usare oggetti interni a cui delego l'implementazione delle funzioni dell'interfaccia
+usare oggetti interni a cui delego l'implementazione delle funzioni dell'interfaccia invece di sfruttare l'ereditarietà
 
 ## JavaFX
 
-esempi di codice in lecture 11 e 12
+### Errore tipico
+
+- ❌ creare un costruttore vuoto di una classe che estende Application
+- ❌ istanziare una classe che estende Application
+
+```java
+public class PratoFiorito extends Application {
+    public PratoFiorito(Input input) {
+        // sbagliato
+    }
+
+    @Override
+    public void start(Stage stage) {
+        PratoFiorito pf = new PratoFiorito(); // sbagliato
+        [...]
+    }
+```
+
+### Propagazione eventi
+
+l'evento scende gerarchicamente per poi risalire allo stesso modo
+
+#### Discesa
+
+capturing -> filters
+
+gli eventi scendono la catena gerarchica fino a raggiungere il componente che li ha generati
+
+#### Risalita
+
+bubbling -> handlers
+
+gli eventi risalgono la catena gerarchica
+
+##### Consume
+
+`e.consume()`
+
+mi permette di bloccare il viaggio dell'evento
 
 ### MVC
 
 Model View Controller
-
----
-
-## Hashcode
-> spiega cosa sia l' hash
-
-> perché serve fare l'override di hashcode oltre che di equals:
-
-- [geekforgeeks](https://www.geeksforgeeks.org/override-equalsobject-hashcode-method/)
-- [stackoverflow](https://stackoverflow.com/questions/2265503/why-do-i-need-to-override-the-equals-and-hashcode-methods-in-java)
-
-> hashcode viene chiamato prima di equals per efficienza. con equals vado sul sicuro e non sbaglio mai. insomma ricordarsi di implementare quello che serven
-
-Non valgono i reciproci:
-> equals uguali -> hashcode uguali
-> equals diversi ->(non garantito) hashcode diversi
-> hashcode diversi -> oggetti diversi
-
-#### Errore tipico
-
-```java
-public class PratoFiorito extends Application {
-  public PratoFiorito(Input input) {
-  ...
-  }
-  @Override
-  public void start(Stage stage) {
-    Input input = new Input();
-    PratoFiorito pf = new PratoFiorito(input);
-...
-
-//Non create MAI un costruttore non vuoto di una classe che estende Application
-//Non istanziate MAI una classe che estende Application
-```
