@@ -28,6 +28,11 @@ _programma perso nel tempo ma simile_
 - [Java](#java)
   - [Index](#index)
   - [Programming languages theory](#programming-languages-theory)
+    - [UML](#uml)
+    - [Association](#association)
+    - [Aggregation](#aggregation)
+    - [Composition](#composition)
+    - [Generalization/Inheritance](#generalizationinheritance)
   - [Ereditarietà](#ereditarietà)
     - [`extends`](#extends)
       - [Costruttori](#costruttori)
@@ -103,6 +108,26 @@ Vtable (Virtual Table)
 - viene mantenuta in memoria RAM
 
 ![Alt text](assets/vtable_image.png)
+
+### UML
+
+![alt text](assets/uml_notation.png)
+
+### Association
+
+![alt text](assets/uml_association.png)
+
+### Aggregation
+
+![alt text](assets/uml_aggregation.png)
+
+### Composition
+
+![alt text](assets/uml_composition.png)
+
+### Generalization/Inheritance
+
+![alt text](assets/uml_generalization.png)
 
 ## Ereditarietà
 
