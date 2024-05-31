@@ -43,6 +43,7 @@ _programma perso nel tempo ma simile_
       - [`final`](#final)
       - [`static`](#static)
       - [`abstract`](#abstract)
+  - [Classi interne](#classi-interne)
   - [Polimorfismo](#polimorfismo)
     - [Overloading](#overloading)
     - [`@Override`](#override)
@@ -201,6 +202,7 @@ Se il programmatore specifica un costruttore il linguaggio non introduce altro
 - modificatore che associa alla classe e non all'oggetto
 - valore condiviso tra le istanze
 - posso fare riferimento e metodi e valori senza un'istanza
+  - ovviamente posso anche riferirmi a quel valore tramite un'istanza
 - disattiva il dynamic binding
 
 #### `abstract`
@@ -211,6 +213,12 @@ definisce classi o metodi astratti
   - viene implementato dalle sottoclassi
 - se un metodo è astratto l'intera classe deve essere astratta
 - non è possibile istanziare classi astratte
+
+## Classi interne
+
+Meccanismo utile a raggruppare classi con lo stesso scopo
+
+Possono accedere agli attributi e ai metodi della classe esterna
 
 ## Polimorfismo
 
