@@ -1,0 +1,10 @@
+#Programming 2 folder
+
+programming_2/esami/Pratica/Soluzioni online
+programming_2/esami/Pratica/Soluzioni/*/.idea
+programming_2/esami/Pratica/Soluzioni/*/.mvn
+programming_2/esami/Pratica/Soluzioni/*/target
+programming_2/esami/Pratica/Soluzioni/*/.gitignore
+programming_2/esami/Pratica/Soluzioni/*/mvnw
+programming_2/esami/Pratica/Soluzioni/*/mvnw.cmd
+programming_2/esami/Pratica/Soluzioni/*/pox.xml
