@@ -151,7 +151,7 @@ Key assumptions:
 
 Write request example:
 
-- Client contacts the master, which assigns a lease to one of the chunk servers (no lease for that chunk exists)
+- Client contacts the master, which assigns a lease to one of the chunk servers (no lease if that chunk exists)
   - Master replies with the ID of the primary and secondary chunk servers holding replicas of the chunk
 - Client sends data to all chunk servers holding replicas
   - Chunk servers stores data in internal LRU (Least Recently Used) buffer and send ACK to client
@@ -191,7 +191,7 @@ Selling points:
 
 - -> Account
   - user account
-  - your account is the level in the hierarchy of your files
+  - your account is the top level in the hierarchy of your files
   - -> Containers
     - namespace for objects (folder)
     - ACL to access object
@@ -246,5 +246,6 @@ Operation example: PUT
 
 ![recap](assets/storage_recap.png)
 
-> GCPSketchnote
-> thecloudgirl.dev
+_non troppo utile se lo chiedi a me_
+
+> GCPSketchnote - thecloudgirl.dev

@@ -349,7 +349,7 @@ secure ways:
 
 - through the network
   - difficult to implement
-- prive them at startup time
+- provide them at startup time
 - read it from a file in a mounted volume
   - most used option
 - secrets management system

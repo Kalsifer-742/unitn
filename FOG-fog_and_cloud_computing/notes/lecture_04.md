@@ -68,8 +68,8 @@ Modern OSes only use ring 0 and 3
 
 virtualization models:
 
-- 0/1/3: Guest os runs in ring 1/2 and has some memory access. VMM runs in ring 3. In this way the guest OS can get in the way of the VMM. Not very good.
-- 0/3/3: Also called ring compression. Everything but the kernel runs in ring 3. In this way we solve the privilege problem but the Guest OS becomes more vulnerable to malicious applications which runes on the same level.
+- 0/1/3: VMM runs in ring 0. Guest os runs in ring 1/2 and has some memory access. In this way the guest OS can get in the way of the VMM. Not very good.
+- 0/3/3: Also called ring compression. Everything but the kernel(and the VMM) runs in ring 3. In this way we solve the privilege problem but the Guest OS becomes more vulnerable to malicious applications which runes on the same level.
 
 ## Privileged Instruction
 
