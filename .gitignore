@@ -7,4 +7,5 @@ programming_2/esami/Pratica/Soluzioni/*/target
 programming_2/esami/Pratica/Soluzioni/*/.gitignore
 programming_2/esami/Pratica/Soluzioni/*/mvnw
 programming_2/esami/Pratica/Soluzioni/*/mvnw.cmd
-programming_2/esami/Pratica/Soluzioni/*/pox.xml
+programming_2/esami/Pratica/Soluzioni/*/pom.xml
+programming_2/esami/Pratica/Soluzioni/*/src/main/resources
