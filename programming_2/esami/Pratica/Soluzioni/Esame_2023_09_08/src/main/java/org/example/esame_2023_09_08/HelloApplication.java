@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         MainController mainController = new MainController();
 
-        //Becaus this is an exercise i didn't bother cleaning up the code and checking the visibilities
+        //Because this is an exercise i didn't bother cleaning up the code: checking visibility, class hierarchy ecc...
 
         Scene scene = new Scene(mainController.getMainView());
         stage.setTitle("StreamThis!");
