@@ -7,8 +7,6 @@
 Store and query structured data across multiple machines
 
 > structured data: data organized in a specific way
->
-> - files are unstructured data
 > - records in a SQL database are structured data
 
 Database models:
