@@ -1,13 +1,15 @@
 package org.example.esame_20230617.model;
 
+import org.example.esame_20230617.model.mutazioni.Mutazione;
+
 import java.util.LinkedList;
 
 public class Geraldo {
-    int livello;
-    int forza;
-    int velocita;
-    int tolleranza;
-    LinkedList<Magia> magie;
+    public final int livello;
+    public int forza;
+    public int velocita;
+    public int tolleranza;
+    public final LinkedList<Magia> magie;
 
     public Geraldo() {
         livello = 0;
@@ -32,5 +34,13 @@ public class Geraldo {
                 "\n" +
                 "Spells:" + "\n" +
                 magieToString;
+    }
+
+    public void applicaMutazione(Mutazione mutazione) {
+        mutazione.applica(this);
+    }
+
+    public void rimuoviMutazione(Mutazione mutazione) {
+        mutazione.rimuovi(this);
     }
 }
