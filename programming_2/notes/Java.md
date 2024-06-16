@@ -33,6 +33,7 @@ _programma perso nel tempo ma simile_
     - [Aggregation](#aggregation)
     - [Composition](#composition)
     - [Generalization/Inheritance](#generalizationinheritance)
+    - [Java](#java-1)
   - [Ereditarietà](#ereditarietà)
     - [`extends`](#extends)
       - [Costruttori](#costruttori)
@@ -129,6 +130,15 @@ Vtable (Virtual Table)
 
 ![alt text](assets/uml_generalization.png)
 
+### Java
+
+```java
+Main.java:10: error: class B is public, should be declared in a file named B.java
+public class B {
+```
+
+Ogni classe pubblica deve essere in un file chiamato nome_classe.java
+
 ## Ereditarietà
 
 ### `extends`
@@ -167,7 +177,7 @@ class B extends A {
 }
 ```
 
-Se la classe definisce un costruttore con parametri non può essere creato un costruttore di default
+Se la classe definisce un costruttore con parametri non può essere creato un costruttore di default. Se il programmatore specifica un costruttore il linguaggio non introduce altro.
 
 ```java
 class A {
@@ -179,11 +189,33 @@ class A {
 }
 
 class B extends A {
-    // Errore!
+    // Errore di compilazione!
 }
 ```
 
-Se il programmatore specifica un costruttore il linguaggio non introduce altro
+If the subclass constructor does not specify which superclass constructor to invoke then the compiler will automatically call the accessible no-args constructor in the superclass.
+
+If the superclass has no no-arg constructor or it isn't accessible then not specifying the superclass constructor to be called (in the subclass constructor) is a compiler error.
+
+```java
+class A {
+    static int x = 0;
+
+    A () {
+        x++;
+    }
+}
+class B extends A {
+    B () {
+        super(); //il compilatore inserisce questa riga
+        x++;
+    }
+}
+
+public static void main(String[] args) {
+    B b = new B(); // x == 2
+}
+```
 
 ### Visibilità
 
@@ -228,6 +260,7 @@ Se il programmatore specifica un costruttore il linguaggio non introduce altro
 - valore condiviso tra le istanze
 - posso fare riferimento e metodi e valori senza un'istanza
   - ovviamente posso anche riferirmi a quel valore tramite un'istanza
+- dentro un metodo statico non posso usare campi dell'istanza
 - disattiva il dynamic binding
 
 #### `abstract`
@@ -266,7 +299,7 @@ Possono accedere agli attributi e ai metodi della classe esterna
 
 consiste nel ridefinire i metodi ereditati della superclasse
 
-- non posso fare l'override ci cose dichiarate final
+- non posso fare l'override di cose dichiarate final
 - non posso fare override di metodi statici
   - posso crearne 2 identici ma sono associati staticamente ognuno alla propria classe
   - viene sempre chiamato guardando il tipo statico
@@ -454,7 +487,7 @@ Collections
 Operations
 
 - add
-- remove.
+- remove
 - bulk operations
   - addAll
   - removeAll
@@ -637,13 +670,13 @@ il nome rappresenta l'interfaccia che voglio implementare. Viene quindi creata u
 
 #### Lambda
 
-le lamba permettono di implementare interfaccio funzionali.
+le lamba permettono di implementare interfacce funzionali.
 
 interfaccia funzionale:
 
 - interfaccia che contiene 1 solo metodo astratto
 
-quindi quando definisco la lambda posso ometter il nome del metodo che sto implementando. viene dato per scontato che sto fornendo un'implementazione di quel metodo.
+quindi quando definisco la lambda posso omettere il nome del metodo che sto implementando. viene dato per scontato che sto fornendo un'implementazione di quel metodo.
 
 _le lambda catturano lo scope in cui vengono definite_
 
